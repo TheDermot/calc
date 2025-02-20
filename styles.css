@@ -34,12 +34,19 @@ body {
 .display {
     grid-column: 1/ 5;
     grid-row: 1;
-    border: red 1px solid;
+    border: red 10px solid;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.display p{
+    border: green 1px solid;
+    font-size: 3rem;
 }
 .inputs {
     grid-column: span 4;
     grid-row: span 5;
-    border: black 2px solid;
+    border: black 10px solid;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: auto;
@@ -51,4 +58,55 @@ body {
     width: 100%;
     aspect-ratio: 1/1;
     border: 0;
+    cursor: pointer;
+}
+
+
+
+/* CSS button */
+button.button-10 {
+  touch-action: manipulation;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+}
+button.button-10 {
+  touch-action: manipulation;
+  font-weight: 600;
+  color: #382b22;
+  text-transform: uppercase;
+  padding: 1.25em 2em;
+  background: #fff0f0;
+  border: 2px solid #b18597;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+button.button-10::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f9c4d2;
+  border-radius: inherit;
+  transform: translate3d(0, 0.3em, -1em);
+}
+button.button-10:hover {
+  background: #ffe9e9;
+}
+button.button-10:active {
+  background: #ffe9e9;
+  transform: translate(0em, 0.15em);
+}
+button.button-10:active::before {
+  transform: translate3d(0, 0, -1em);
 }
