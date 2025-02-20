@@ -1,6 +1,13 @@
 // calc.js
 console.log("JavaScript is working!");
 
+const numbers = document.querySelectorAll(".number");
+const operators = document.querySelectorAll(".operator");
+const deleteBtn = document.getElementById("delete")
+const clearBtn = document.getElementById("clear")
+const equalBtn = document.getElementById("equal")
+const decimalBtn = document.getElementById("decimal")
+let displayScreen = document.querySelector(".display p");
 
 
 //math functions
@@ -39,4 +46,3 @@ const operate = (num1, operator, num2) => {
 };
 
 
-let displayValue = document.querySelector(".display p");
