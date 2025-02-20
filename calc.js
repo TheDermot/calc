@@ -13,27 +13,34 @@ let num2 = "";
 let operator = "";
 let result;
 
+//listener on numbers buttons
 numbers.forEach((num) => {
   num.addEventListener("click", () => {
-    if (num2 !== "" && operator === "") {
-      // If equal was pressed, reset and start a new calculation
+    if (operator === "" && result !== undefined) {
+      //if evaluation occured and number is clicked next instead of op
       num1 = "";
       num2 = "";
+      result = undefined; // Reset result
     }
-    num1 += num.textContent;
+    num1 += num.textContent; // Always append to num1
     displayScreen.textContent = num1;
   });
 });
+//operator listener and logic
 operators.forEach((op) => {
   op.addEventListener("click", () => {
-    if (op.textContent == "X") operator = "*";
+    if (op.textContent == "X") operator = "*"; //handles * text content
     else operator = op.textContent;
-    console.log(operator);
 
-    if (num1 !== "" && num2 !== "") {
-      evaluate(); // Evaluate the previous operation
+    if (num1 !== "" && num2 !== "") { //if clicked n num1 n 2 not empty then evaluate
+      evaluate();  //ex 1 + 1 + > (2) + next number
+      operator = op.textContent; //maintains operator for next chained operation
     } else if (num1 !== "" && num2 === "") {
-      num2 = num1; // Move num1 to num2 for chaining
+      num2 = num1; // Move num1 to num2 for chaining on initial input of num1
+      num1 = "";
+    } else if (result !== undefined) {
+      // If equal was pressed, use the result for chaining
+      num2 = result;
       num1 = "";
     }
   });
@@ -41,12 +48,12 @@ operators.forEach((op) => {
 equalBtn.addEventListener("click", () => {
   evaluate();
 });
-const evaluate = () => {
+const evaluate = () => { //if needed paramaters exist
   if (num1 !== "" && num2 !== "" && operator !== "") {
     result = operate(Number(num2), operator, Number(num1));
-    operator = "";
     num2 = result; // Store result in num2 for chaining
     num1 = ""; // Reset num1 for the next number
+    operator = ""; // Reset operator
     displayScreen.textContent = result;
     console.log(result);
   }
@@ -57,7 +64,7 @@ const add = function (a, b) {
 };
 
 const subtract = function (a, b) {
-  return b - a;
+  return a - b;
 };
 
 const multiply = function (a, b) {
