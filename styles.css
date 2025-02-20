@@ -42,6 +42,7 @@ body {
 .display p{
     border: green 1px solid;
     font-size: 3rem;
+    max-width: 100%;
 }
 .inputs {
     grid-column: span 4;
