@@ -69,6 +69,7 @@ const evaluate = () => {
   if (num1 !== "" && num2 !== "" && operator !== "") {
     if (operator == "X") operator = "*"; //handles * text content
     result = operate(Number(num2), operator, Number(num1));
+    result =parseFloat(result.toFixed(4))
     num2 = result; // Store result in num2 for chaining
     num1 = ""; // Reset num1 for the next number
     operator = ""; // Reset operator
@@ -108,6 +109,7 @@ const operate = (num1, operator, num2) => {
   else if (operator == "/") return divide(num1, num2);
   else return null;
 };
+
 
 clearBtn.addEventListener("click", () => {
   num1 = "";
