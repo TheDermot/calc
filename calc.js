@@ -32,6 +32,22 @@ numbers.forEach((num) => {
     }
   });
 });
+window.addEventListener("keydown", (e) => {
+  if ((e.key >= 0 && e.key <= 9)) {
+    numbers.forEach((num)=>{
+      if (num.textContent == e.key) num.click()
+    })
+  }
+  else if (e.key === "+" || e.key === "-" || e.key === "/" || e.key === "*"){
+    operators.forEach((op)=>{
+      if (op.textContent == e.key) op.click()
+    })
+  }
+  else if (e.key === "Backspace" || e.key === "Delete") deleteBtn.click()
+  else if (e.key === "=" || e.key === "Enter") equalBtn.click()
+  else if (e.key === ".") decimalBtn.click()
+  console.log(e)
+});
 //operator listener and logic
 operators.forEach((op) => {
   op.addEventListener("click", () => {
@@ -123,3 +139,5 @@ deleteBtn.addEventListener("click", () => {
   num1 = num1.slice(0, -1); // Remove the last character
   displayScreen.textContent = num1 || "0"; // If num1 is empty, show "0"
 });
+
+//add keyboard support and maybe change colors
