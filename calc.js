@@ -12,18 +12,21 @@ let num1 = "";
 let num2 = "";
 let operator = "";
 let result;
+let decimalClickedAfterEqual = false;
 
 //listener on numbers buttons
 numbers.forEach((num) => {
   num.addEventListener("click", () => {
     if (operator === "" && result !== undefined) {
       //if evaluation occured and number is clicked next instead of op
-      num1 = "";
+      if (decimalClickedAfterEqual);
+      else num1 = "";
       num2 = "";
       result = undefined; // Reset result
     }
     num1 += num.textContent; // Always append to num1
     displayScreen.textContent = num1;
+    decimalClickedAfterEqual = false; // Reset the flag after a number is clicked
   });
 });
 //operator listener and logic
@@ -46,6 +49,18 @@ operators.forEach((op) => {
     }
   });
 });
+decimalBtn.addEventListener("click", () => {
+  if (!num1.includes(".")) {
+    if (num1 !== "") {
+      num1 += ".";
+      displayScreen.textContent = num1;
+    } else {
+      num1 += "0.";
+      displayScreen.textContent = num1;
+    }
+    decimalClickedAfterEqual = true;
+  }
+});
 equalBtn.addEventListener("click", () => {
   evaluate();
 });
@@ -58,6 +73,7 @@ const evaluate = () => {
     num1 = ""; // Reset num1 for the next number
     operator = ""; // Reset operator
     displayScreen.textContent = result;
+    decimalClickedAfterEqual = false; // Reset the flag
     console.log(result);
   }
 };
