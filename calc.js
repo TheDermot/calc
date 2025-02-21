@@ -32,8 +32,9 @@ operators.forEach((op) => {
     if (op.textContent == "X") operator = "*"; //handles * text content
     else operator = op.textContent;
 
-    if (num1 !== "" && num2 !== "") { //if clicked n num1 n 2 not empty then evaluate
-      evaluate();  //ex 1 + 1 + > (2) + next number
+    if (num1 !== "" && num2 !== "") {
+      //if clicked n num1 n 2 not empty then evaluate
+      evaluate(); //ex 1 + 1 + > (2) + next number
       operator = op.textContent; //maintains operator for next chained operation
     } else if (num1 !== "" && num2 === "") {
       num2 = num1; // Move num1 to num2 for chaining on initial input of num1
@@ -48,8 +49,10 @@ operators.forEach((op) => {
 equalBtn.addEventListener("click", () => {
   evaluate();
 });
-const evaluate = () => { //if needed paramaters exist
+const evaluate = () => {
+  //if needed paramaters exist
   if (num1 !== "" && num2 !== "" && operator !== "") {
+    if (operator == "X") operator = "*"; //handles * text content
     result = operate(Number(num2), operator, Number(num1));
     num2 = result; // Store result in num2 for chaining
     num1 = ""; // Reset num1 for the next number
