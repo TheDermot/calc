@@ -13,6 +13,7 @@ let num2 = "";
 let operator = "";
 let result;
 let decimalClickedAfterEqual = false;
+const maxDigits = 23; //based off casio user guide
 
 //listener on numbers buttons
 numbers.forEach((num) => {
@@ -24,9 +25,11 @@ numbers.forEach((num) => {
       num2 = "";
       result = undefined; // Reset result
     }
-    num1 += num.textContent; // Always append to num1
-    displayScreen.textContent = num1;
-    decimalClickedAfterEqual = false; // Reset the flag after a number is clicked
+    if (num1.length < maxDigits) {
+      num1 += num.textContent; // Always append to num1
+      displayScreen.textContent = num1;
+      decimalClickedAfterEqual = false; // Reset the flag after a number is clicked
+    }
   });
 });
 //operator listener and logic
@@ -50,7 +53,7 @@ operators.forEach((op) => {
   });
 });
 decimalBtn.addEventListener("click", () => {
-  if (!num1.includes(".")) {
+  if (!num1.includes(".") && num1.length < maxDigits) {
     if (num1 !== "") {
       num1 += ".";
       displayScreen.textContent = num1;
@@ -69,7 +72,7 @@ const evaluate = () => {
   if (num1 !== "" && num2 !== "" && operator !== "") {
     if (operator == "X") operator = "*"; //handles * text content
     result = operate(Number(num2), operator, Number(num1));
-    result =parseFloat(result.toFixed(4))
+    result = parseFloat(result.toFixed(4));
     num2 = result; // Store result in num2 for chaining
     num1 = ""; // Reset num1 for the next number
     operator = ""; // Reset operator
@@ -109,7 +112,6 @@ const operate = (num1, operator, num2) => {
   else if (operator == "/") return divide(num1, num2);
   else return null;
 };
-
 
 clearBtn.addEventListener("click", () => {
   num1 = "";
